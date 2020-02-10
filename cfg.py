@@ -1,0 +1,3 @@
+MODELS_PATH = 'models/'
+CAM = 0
+FRAME_W, FRAME_H = 640, 360
