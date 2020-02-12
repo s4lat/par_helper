@@ -115,12 +115,6 @@ class Ui(QMainWindow):
 
 				if self.isEyeDriven:
 					pred = self.model.predict(np.expand_dims(eyes_roi/255, 0))[0]
-					x = pred[0]
-					y = pred[1]
-
-					# g = self.eyesLabel.geometry()
-					# w, h = g.width(), g.height()
-					# out_eyes_roi = cv2.resize(eyes_roi, (w, h))
 						
 			except cv2.error as e:
 				print('[ERROR] Eyes roi is empty!')
@@ -129,7 +123,7 @@ class Ui(QMainWindow):
 			# w, h = g.width(), g.height()
 			# out_frame = cv2.resize(frame, (w, h))
 
-			self.q.put({'coords' : [x, y]})
+			self.q.put({'coords' : cfg.ball_positions[np.argmax(pred)]})
 
 	def move_cursor(self):
 		if self.q.empty() or not self.isEyeDriven:
