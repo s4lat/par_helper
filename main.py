@@ -144,7 +144,7 @@ class Ui(QMainWindow):
 
 	def check_timer(self):
 		if self.timer is not None:
-			if time.time() - self.timer > 5:
+			if time.time() - self.timer > cfg.TIME_FOR_CLICK:
 				self.hov_btn.click()
 				self.timer = None
 				self.hov_btn = None
@@ -160,7 +160,7 @@ class Ui(QMainWindow):
 	def n_enterEvent(self, btn, event):
 		self.timer = time.time()
 		self.hov_btn = btn
-		print("Ждем 5 сек и нажмем %s" % btn.text())
+		print("Ждем %s сек и нажмем %s" % (cfg.TIME_FOR_CLICK, btn.text()))
 
 	def n_leaveEvent(self, event):
 		self.timer = None
